@@ -165,7 +165,7 @@ export default function App() {
     switch (view) {
       case 'dashboard': return <Dashboard project={project} style={currentStyle} scene={scenes[0] || initialScenes[0]} schedule={schedule} reminders={reminders} onNavigate={navigate} onToggleReminder={(id) => setReminders(reminders.map((item) => item.id === id ? { ...item, done: !item.done } : item))} />
       case 'styles': return <StyleLibrary styles={styles} currentStyle={currentStyle} onUse={useStyle} notify={notify} />
-      case 'script': return <ScriptStudio project={project} styles={styles} scenes={scenes} onProjectChange={setProject} onGenerate={generateScenes} onSceneChange={(scene) => setScenes(scenes.map((item) => item.id === scene.id ? scene : item))} onNavigate={navigate} notify={notify} />
+      case 'script': return <ScriptStudio project={project} styles={styles} scenes={scenes} onProjectChange={setProject} onGenerate={generateScenes} onScenesSet={setScenes} onSceneChange={(scene) => setScenes(scenes.map((item) => item.id === scene.id ? scene : item))} onNavigate={navigate} notify={notify} />
       case 'studio': return <CharacterStudio style={currentStyle} notify={notify} />
       case 'builder': return <VideoBuilder project={project} style={currentStyle} scenes={scenes.length ? scenes : initialScenes} renderProgress={renderProgress} rendering={rendering} onStartRender={() => { setRenderProgress(0); setRendering(true) }} onProjectChange={setProject} onDownload={downloadSummary} notify={notify} />
       case 'aigenerate': return <AIVideoGenerator notify={notify} />
