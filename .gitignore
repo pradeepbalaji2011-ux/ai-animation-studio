@@ -1,3 +1,20 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.env
+*.env.*
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+secrets/
+.secrets/
+credentials/
+.credentials/
+
 # Node
 node_modules/
 npm-debug.log*
@@ -9,12 +26,9 @@ pnpm-debug.log*
 # Build outputs
 dist/
 build/
+out/
+.next/
 *.local
-
-# Environment variables
-.env
-.env.*
-!.env.example
 
 # Editor / OS
 .vscode/
