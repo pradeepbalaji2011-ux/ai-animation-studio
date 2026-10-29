@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 import { BarChart3, Bell, BookOpenCheck, CalendarDays, Clapperboard, Command, Film, FolderKanban, LayoutDashboard, Menu, Palette, PlaySquare, Plus, Search, Sparkles, TrendingUp, UserRound, UsersRound, WandSparkles, X } from 'lucide-react'
 import { Button, Field, Modal } from '@/components/UI'
+import AuthModal from '@/components/AuthModal'
+import { supabase } from '@/lib/supabase'
+import type { User } from '@supabase/supabase-js'
 import { cx } from '@/lib/cx'
 import Dashboard from '@/pages/Dashboard'
 import StyleLibrary from '@/pages/StyleLibrary'
@@ -74,8 +77,21 @@ export default function App() {
   const [newIdea, setNewIdea] = useState('')
   const [rendering, setRendering] = useState(false)
   const [renderProgress, setRenderProgress] = useState(68)
+  const [user, setUser] = useState<User | null>(null)
+  const [authOpen, setAuthOpen] = useState(false)
   const currentStyle = styles.find((style) => style.id === project.styleId) || styles[10]
   const openReminderCount = reminders.filter((item) => !item.done).length
+
+  useEffect(() => {
+    if (!supabase) return
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null)
+    })
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+    return () => subscription.unsubscribe()
+  }, [])
 
   const notify = useCallback((message: string) => {
     setToast(message)
@@ -192,8 +208,14 @@ export default function App() {
           {navGroups.map((group) => <div className="nav-group" key={group.label}><p>{group.label}</p>{group.items.map((item) => { const Icon = item.icon; return <button key={item.id} className={view === item.id ? 'active' : ''} onClick={() => navigate(item.id)}><Icon size={17} strokeWidth={1.7} /><span>{item.label}</span>{item.id === 'builder' && <i />}</button> })}</div>)}
         </nav>
         <div className="sidebar-foot">
-          <div className="local-status"><span className="status-dot" /><div><strong>Local prototype</strong><small>No paid APIs connected</small></div></div>
-          <p>Edits stay in this browser. Production sync requires the Supabase backend.</p>
+          <div className="local-status">
+            <span className="status-dot" style={{ background: user ? '#22c55e' : undefined }} />
+            <div>
+              <strong>{user ? 'Supabase Connected' : 'Local prototype'}</strong>
+              <small>{user ? 'Row-Level Security active' : 'Click PR avatar to connect database'}</small>
+            </div>
+          </div>
+          <p>{user ? 'Projects, scripts, and scenes sync to your private cloud database.' : 'Edits stay in this browser. Cloud sync requires Supabase.'}</p>
         </div>
       </aside>
 
@@ -203,13 +225,30 @@ export default function App() {
           <div className="topbar-right">
             <button className="search-trigger" onClick={() => setSearchOpen(true)}><Search size={15} /><span>Jump to a module</span><kbd>⌘ K</kbd></button>
             <button className="notification-btn" aria-label={`${openReminderCount} open reminders`} onClick={() => navigate('work')}><Bell size={17} />{openReminderCount > 0 && <span>{openReminderCount}</span>}</button>
-            <div className="creator-avatar" title="Local creator workspace">PR</div>
+            <button
+              className="creator-avatar"
+              onClick={() => setAuthOpen(true)}
+              title={user ? `Signed in as ${user.email} (Manage database & migration)` : 'Sign in to Supabase / Database Migration'}
+              style={{ cursor: 'pointer', position: 'relative' }}
+            >
+              {user ? (user.email?.[0].toUpperCase() || 'PR') : 'PR'}
+              {user && <span style={{ position: 'absolute', bottom: -1, right: -1, width: 8, height: 8, borderRadius: '50%', background: '#22c55e', border: '1.5px solid #1c1d20' }} />}
+            </button>
           </div>
         </header>
         <main id="main-content">{page}</main>
       </div>
 
       {toast && <div className="toast" role="status"><Sparkles size={16} />{toast}<button aria-label="Dismiss notification" onClick={() => setToast('')}><X size={14} /></button></div>}
+
+      {authOpen && (
+        <AuthModal
+          user={user}
+          onUserChange={setUser}
+          onClose={() => setAuthOpen(false)}
+          notify={notify}
+        />
+      )}
 
       {searchOpen && <Modal title="Jump to a module" description="Search the complete AnimStudio workspace." onClose={() => { setSearchOpen(false); setSearchQuery('') }}>
         <label className="command-search"><Search size={17} /><input autoFocus value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Type a module name…" /></label>
