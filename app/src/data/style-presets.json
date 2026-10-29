@@ -1,0 +1,737 @@
+[
+  {
+    "id": "traditional-animation",
+    "name": "Traditional Animation",
+    "bestFor": "Character films, brand stories, artistic projects",
+    "mainStrength": "Expressive, handcrafted storytelling",
+    "route": "generative",
+    "promptPrefix": "Hand-drawn 2D character animation, expressive pencil-clean line work, painted cel fills, subtle paper grain, deliberate silhouette, warm studio lighting, original character design, cinematic short-form composition",
+    "negativePrompt": "photorealistic 3D, plastic skin, text, subtitles, logo, watermark, branded character, off-model face, inconsistent outfit, extra limbs, malformed hands, flicker, muddy lighting, busy background",
+    "palette": [
+      "#2B2522",
+      "#F3E6CF",
+      "#D95D45",
+      "#4F6F68",
+      "#E9B949"
+    ],
+    "cameraRules": [
+      "Favor clear full-body or medium shots for acting",
+      "Use one slow pan or push per scene",
+      "Keep the subject silhouette readable in vertical frames",
+      "Avoid rapid orbital camera moves"
+    ],
+    "fps": 24,
+    "motionRules": [
+      "Animate on twos for character acting with smooth camera moves",
+      "Use anticipation and follow-through on one primary action",
+      "Hold the final pose for 6–8 frames",
+      "Avoid secondary micro-gestures"
+    ],
+    "backgrounds": [
+      "Painted countryside at sunrise",
+      "Cozy hand-painted workshop",
+      "Storybook forest clearing",
+      "Quiet theatrical stage"
+    ],
+    "characterTypes": [
+      "Expressive human protagonist",
+      "Original anthropomorphic animal",
+      "Storybook child hero",
+      "Hand-drawn fantasy creature"
+    ]
+  },
+  {
+    "id": "2d-animation",
+    "name": "2D Animation",
+    "bestFor": "Marketing videos, training, brand stories",
+    "mainStrength": "Clear, relatable communication",
+    "route": "programmatic",
+    "promptPrefix": "Clean flat 2D animation, bold geometric silhouettes, limited vector palette, crisp editable shapes, friendly proportions, uncluttered staging, high contrast vertical composition",
+    "negativePrompt": "photorealism, painterly noise, 3D rendering, gradients on every shape, garbled text, watermark, logo, thin unreadable strokes, cluttered layout, micro-details, inconsistent character proportions",
+    "palette": [
+      "#17212B",
+      "#F4F7F5",
+      "#EF5B4C",
+      "#36A18A",
+      "#F2C14E"
+    ],
+    "cameraRules": [
+      "Lock the camera for explanations",
+      "Use simple left-right staging",
+      "Reserve close-ups for one clear focal point",
+      "Keep essential action above the lower caption zone"
+    ],
+    "fps": 24,
+    "motionRules": [
+      "Use ease-out transforms and 8–12 frame holds",
+      "Move one primary subject per scene",
+      "Use shape or position transitions rather than complex rigging",
+      "Keep loops subtle and seamless"
+    ],
+    "backgrounds": [
+      "Minimal flat home office",
+      "Geometric city block",
+      "Simple classroom interior",
+      "Abstract two-tone stage"
+    ],
+    "characterTypes": [
+      "Flat vector adult",
+      "Friendly geometric mascot",
+      "Simple workplace character",
+      "Relatable family character"
+    ]
+  },
+  {
+    "id": "motion-graphics",
+    "name": "Motion Graphics",
+    "bestFor": "SaaS, data, product features",
+    "mainStrength": "Simplifies complex information",
+    "route": "programmatic",
+    "promptPrefix": "Precision motion graphics, crisp vector icons, modular grid, controlled typography, clean data shapes, bold negative space, exact alignment, vertical product-story composition",
+    "negativePrompt": "generated lettering, pseudo-text, warped charts, painterly texture, photorealistic people, watermark, logo artifacts, excessive particles, ambiguous icons, low contrast, unaligned elements",
+    "palette": [
+      "#111820",
+      "#F5F7FA",
+      "#2F80ED",
+      "#53D8B4",
+      "#FFB020"
+    ],
+    "cameraRules": [
+      "Use an orthographic design stage",
+      "Reveal one data group at a time",
+      "Keep chart axes and labels fixed during reading",
+      "Use full-frame graphic transitions instead of camera shakes"
+    ],
+    "fps": 30,
+    "motionRules": [
+      "Drive elements with precise keyframed transforms",
+      "Use 12–18 frame ease-in-out transitions",
+      "Animate one chart measure per beat",
+      "Keep text static long enough to read"
+    ],
+    "backgrounds": [
+      "Dark modular grid",
+      "Light editorial canvas",
+      "Abstract data landscape",
+      "Minimal product-feature stage"
+    ],
+    "characterTypes": [
+      "Icon-only narrator",
+      "Simple geometric guide",
+      "Abstract avatar",
+      "No character"
+    ]
+  },
+  {
+    "id": "3d-animation",
+    "name": "3D Animation",
+    "bestFor": "Products, architecture, technical visuals",
+    "mainStrength": "Realistic depth and detail",
+    "route": "generative",
+    "promptPrefix": "High-quality original 3D animation, physically based materials, clean studio lighting, controlled depth of field, detailed modeled surfaces, stable geometry, cinematic product staging",
+    "negativePrompt": "melting geometry, texture crawling, text, subtitles, watermark, branded product, warped reflections, extra components, intersecting meshes, harsh noise, overexposed highlights, unstable scale",
+    "palette": [
+      "#15191E",
+      "#E8EDF2",
+      "#B7C4CE",
+      "#E06A3B",
+      "#6E91A8"
+    ],
+    "cameraRules": [
+      "Use a 50–85mm product lens look",
+      "Limit movement to one dolly, arc, or crane",
+      "Preserve product scale and orientation",
+      "Keep the focal subject centered through the move"
+    ],
+    "fps": 24,
+    "motionRules": [
+      "Use physically plausible easing and inertia",
+      "Avoid fast collisions and complex physics",
+      "Hold detail shots for at least 12 frames",
+      "Keep surface textures temporally stable"
+    ],
+    "backgrounds": [
+      "Seamless studio cyclorama",
+      "Modern architectural interior",
+      "Technical exploded-view stage",
+      "Soft-lit minimalist room"
+    ],
+    "characterTypes": [
+      "Stylized 3D human",
+      "Original product mascot",
+      "Simple service robot",
+      "No character"
+    ]
+  },
+  {
+    "id": "stop-motion",
+    "name": "Stop Motion",
+    "bestFor": "Ads, social content, product campaigns",
+    "mainStrength": "Distinctive handmade appearance",
+    "route": "generative",
+    "promptPrefix": "Handmade stop-motion set, tactile paper and fabric materials, visible miniature craftsmanship, controlled practical lighting, original puppet design, stable tabletop stage, cinematic macro detail",
+    "negativePrompt": "smooth computer motion, plastic CGI, text, watermark, logo, branded toy, unstable puppet features, drifting set pieces, flickering exposure, malformed hands, weightless movement, cluttered miniature set",
+    "palette": [
+      "#302A27",
+      "#EFE2C8",
+      "#C9503D",
+      "#68826D",
+      "#D4A72C"
+    ],
+    "cameraRules": [
+      "Lock the miniature camera position",
+      "Use macro close-up or full-set wide only",
+      "Keep the puppet on a clear stage plane",
+      "Avoid handheld shake and fast zooms"
+    ],
+    "fps": 12,
+    "motionRules": [
+      "Use stepped 12 fps motion with held poses",
+      "Move one puppet or prop per shot",
+      "Preserve tiny handmade imperfections without identity drift",
+      "Avoid complex object transformations"
+    ],
+    "backgrounds": [
+      "Miniature cardboard street",
+      "Fabric puppet living room",
+      "Tabletop product workshop",
+      "Paper moon theatre"
+    ],
+    "characterTypes": [
+      "Original fabric puppet",
+      "Paper-and-wire miniature person",
+      "Handmade animal puppet",
+      "Animated everyday object"
+    ]
+  },
+  {
+    "id": "whiteboard-animation",
+    "name": "Whiteboard Animation",
+    "bestFor": "Training, onboarding, complex topics",
+    "mainStrength": "Step-by-step explanation",
+    "route": "programmatic",
+    "promptPrefix": "Crisp whiteboard explanation, black ink line illustrations, one restrained accent color, generous white space, exact vector strokes, clear reading order, simple vertical instructional layout",
+    "negativePrompt": "pseudo-writing, garbled labels, colored photographic background, 3D objects, watermark, logo, messy crossed lines, tiny details, unreadable handwriting, crowded diagrams, gray low-contrast ink",
+    "palette": [
+      "#FAFAF7",
+      "#17202A",
+      "#D64545",
+      "#D9D9D2"
+    ],
+    "cameraRules": [
+      "Use a fixed orthographic board",
+      "Reveal one diagram region per scene",
+      "Keep labels horizontal and stable",
+      "Avoid simulated hand close-ups and rapid pans"
+    ],
+    "fps": 30,
+    "motionRules": [
+      "Draw strokes along deterministic SVG paths",
+      "Reveal one visual idea at a time",
+      "Use short wipes between steps",
+      "Hold completed diagrams for reading"
+    ],
+    "backgrounds": [
+      "Blank warm-white board",
+      "Light grid notebook board",
+      "Split problem-solution board",
+      "Simple process-flow canvas"
+    ],
+    "characterTypes": [
+      "Simple ink-drawn guide",
+      "Line-art professional",
+      "Iconic stick figure",
+      "No character"
+    ]
+  },
+  {
+    "id": "claymation",
+    "name": "Claymation",
+    "bestFor": "Children's content, ads, character stories",
+    "mainStrength": "Playful visual personality",
+    "route": "generative",
+    "promptPrefix": "Hand-sculpted clay animation, rounded original characters, visible fingerprint texture, colorful miniature set, soft practical studio light, stable facial features, playful tactile composition",
+    "negativePrompt": "smooth plastic CGI, text, watermark, logo, branded character, melting face, changing outfit, extra fingers, collapsing clay forms, flicker, harsh shadows, fast physics, tiny props",
+    "palette": [
+      "#3A302C",
+      "#F4E1C1",
+      "#E9694F",
+      "#5D9C86",
+      "#F1BE42"
+    ],
+    "cameraRules": [
+      "Use a locked medium shot or full-set view",
+      "Keep faces large enough to read",
+      "Stage one clay subject against a simple set",
+      "Avoid depth-of-field hunting"
+    ],
+    "fps": 12,
+    "motionRules": [
+      "Use stepped 12 fps poses",
+      "Favor squash-and-stretch on one clear action",
+      "Keep fingerprint texture stable across frames",
+      "End with a held expressive pose"
+    ],
+    "backgrounds": [
+      "Clay kitchen miniature",
+      "Sculpted garden hill",
+      "Colorful clay classroom",
+      "Handmade toy stage"
+    ],
+    "characterTypes": [
+      "Round clay child hero",
+      "Original clay animal",
+      "Friendly clay monster",
+      "Anthropomorphic clay food"
+    ]
+  },
+  {
+    "id": "live-action-with-animation",
+    "name": "Live Action with Animation",
+    "bestFor": "Brand videos, ads, demonstrations",
+    "mainStrength": "Combines realism and explanation",
+    "route": "generative",
+    "promptPrefix": "Grounded live-action footage with clean hand-drawn animated overlays, realistic original presenter, controlled natural lighting, stable camera, precise tracked graphic accents, uncluttered product demonstration",
+    "negativePrompt": "text artifacts, garbled captions, watermark, logo, branded product, face warping, extra fingers, overlay drifting, flickering track marks, unsafe stunts, cluttered room, unrealistic skin",
+    "palette": [
+      "#20252A",
+      "#F1F0EA",
+      "#E14D3D",
+      "#75A7A0",
+      "#D8B45A"
+    ],
+    "cameraRules": [
+      "Lock the live-action plate for stable tracking",
+      "Use a medium presenter shot or product close-up",
+      "Keep overlay anchors on large flat surfaces",
+      "Avoid fast camera rotation"
+    ],
+    "fps": 24,
+    "motionRules": [
+      "Track overlays to one dominant plane",
+      "Use restrained hand-drawn accents",
+      "Keep live-action motion simple and continuous",
+      "Avoid finger-level demonstrations"
+    ],
+    "backgrounds": [
+      "Real creator studio desk",
+      "Simple kitchen demonstration set",
+      "Urban storefront plate",
+      "Clean workshop bench"
+    ],
+    "characterTypes": [
+      "Real adult presenter",
+      "Live-action hands-free host",
+      "Real person with animated companion",
+      "No character"
+    ]
+  },
+  {
+    "id": "cutout-animation",
+    "name": "Cutout Animation",
+    "bestFor": "Short videos, satire, smaller productions",
+    "mainStrength": "Simple, distinctive visual style",
+    "route": "programmatic",
+    "promptPrefix": "Paper cutout collage animation, crisp layered shapes, photocopied texture, flat hinged characters, bold editorial composition, limited palette, controlled drop shadows, vertical satire staging",
+    "negativePrompt": "smooth realistic anatomy, generated text, watermark, logo, copyrighted photo character, excessive torn edges, muddy collage layers, 3D realism, chaotic background, tiny facial details, perspective warping",
+    "palette": [
+      "#252220",
+      "#F1E7D0",
+      "#C9473D",
+      "#487B78",
+      "#E1A83B"
+    ],
+    "cameraRules": [
+      "Use a straight-on flat stage",
+      "Keep layers visibly separated",
+      "Favor medium shots with large silhouettes",
+      "Avoid perspective camera moves"
+    ],
+    "fps": 24,
+    "motionRules": [
+      "Pivot limbs at visible hinge points",
+      "Use deliberate stepped holds with smooth scene transitions",
+      "Move one cutout layer per action",
+      "Avoid complex deformation"
+    ],
+    "backgrounds": [
+      "Layered paper parliament",
+      "Cardboard newsroom",
+      "Collage city sidewalk",
+      "Torn-paper domestic interior"
+    ],
+    "characterTypes": [
+      "Flat hinged human",
+      "Editorial collage politician archetype",
+      "Paper animal mascot",
+      "Cutout object character"
+    ]
+  },
+  {
+    "id": "kinetic-typography",
+    "name": "Kinetic Typography",
+    "bestFor": "Promotions, social ads, conference openers",
+    "mainStrength": "Highlights key messages",
+    "route": "programmatic",
+    "promptPrefix": "Bold kinetic typography, exact editable type, strong vertical grid, rhythmic word reveals, high contrast, minimal geometric accents, crisp caption-safe composition, no generated lettering",
+    "negativePrompt": "pseudo-text, misspelled words, warped glyphs, generated font texture, watermark, logo, low contrast, crowded paragraphs, excessive typefaces, continuous spinning, unreadably fast motion",
+    "palette": [
+      "#161616",
+      "#F4F1EA",
+      "#E23D35",
+      "#B7FF3C"
+    ],
+    "cameraRules": [
+      "Use a fixed orthographic typography stage",
+      "Keep the active phrase inside central safe zones",
+      "Use scale and masking instead of perspective spins",
+      "Limit each scene to five on-screen words"
+    ],
+    "fps": 30,
+    "motionRules": [
+      "Sync word emphasis to narration timestamps",
+      "Use 8–14 frame ease-out word entrances",
+      "Highlight one keyword per phrase",
+      "Hold the completed line for reading"
+    ],
+    "backgrounds": [
+      "Solid high-contrast type stage",
+      "Kinetic grid with baseline guides",
+      "Split-screen word canvas",
+      "Minimal keynote backdrop"
+    ],
+    "characterTypes": [
+      "No character",
+      "Typographic narrator",
+      "Small geometric cursor",
+      "Abstract voice avatar"
+    ]
+  },
+  {
+    "id": "anime-animation",
+    "name": "Anime Animation",
+    "bestFor": "Advertising, youth content, expressive stories",
+    "mainStrength": "Strong emotional visual style",
+    "route": "generative",
+    "promptPrefix": "Original cinematic 2D anime-inspired animation, clean expressive linework, painterly layered backgrounds, deliberate atmospheric lighting, consistent face and outfit, emotionally readable silhouette, detailed vertical composition",
+    "negativePrompt": "copyrighted character, franchise costume, text, subtitles, watermark, logo, off-model eyes, changing hairstyle, extra fingers, warped face, flicker, over-saturated lighting, cluttered background, micro-gestures",
+    "palette": [
+      "#20283B",
+      "#F2D5C4",
+      "#D95555",
+      "#5C88A6",
+      "#E7B75D"
+    ],
+    "cameraRules": [
+      "Alternate one wide establishing shot with medium close-ups",
+      "Use slow push-ins for emotional beats",
+      "Keep facial features stable through camera motion",
+      "Avoid complex 360-degree action shots"
+    ],
+    "fps": 24,
+    "motionRules": [
+      "Use held cels with smooth camera movement",
+      "Favor one clear body action and restrained hair motion",
+      "Use atmospheric parallax in two or three layers",
+      "Hold expressions without tiny facial motion"
+    ],
+    "backgrounds": [
+      "Rainy scooter street at dusk",
+      "Sunlit seaside railway",
+      "Quiet school rooftop",
+      "Cloud-filled mountain overlook"
+    ],
+    "characterTypes": [
+      "Original teen adventurer",
+      "Original adult courier",
+      "Expressive anime-inspired student",
+      "Original fantasy companion"
+    ]
+  },
+  {
+    "id": "vector-animation",
+    "name": "Vector Animation",
+    "bestFor": "Apps, web content, UI animation",
+    "mainStrength": "Scalable, adaptable graphics",
+    "route": "programmatic",
+    "promptPrefix": "Precision vector animation, scalable geometric artwork, clean strokes and fills, exact interface components, restrained palette, crisp vertical layout, consistent icon grid, accessible contrast",
+    "negativePrompt": "raster blur, pseudo-text, garbled UI labels, watermark, logo artifacts, painterly shading, malformed icons, inconsistent stroke widths, excessive gradients, dense screen content, tiny controls",
+    "palette": [
+      "#182026",
+      "#F6F8F7",
+      "#2C9C85",
+      "#F0644B",
+      "#F2C14E"
+    ],
+    "cameraRules": [
+      "Use a fixed flat design canvas",
+      "Scale entire components without raster blur",
+      "Keep interface labels outside generated imagery",
+      "Use direct cuts between product states"
+    ],
+    "fps": 30,
+    "motionRules": [
+      "Animate SVG paths and transforms deterministically",
+      "Use 10–16 frame interface transitions",
+      "Move one component group per beat",
+      "Keep stroke widths visually consistent"
+    ],
+    "backgrounds": [
+      "Minimal app showcase canvas",
+      "Responsive web layout stage",
+      "Abstract vector landscape",
+      "Clean icon-grid backdrop"
+    ],
+    "characterTypes": [
+      "Geometric user avatar",
+      "Flat interface guide",
+      "Simple vector mascot",
+      "No character"
+    ]
+  },
+  {
+    "id": "rotoscope-animation",
+    "name": "Rotoscope Animation",
+    "bestFor": "Music videos, stylized ads, film sequences",
+    "mainStrength": "Lifelike motion traced from life",
+    "route": "generative",
+    "promptPrefix": "Stylized rotoscope animation over original live-action motion, flowing hand-inked contours, simplified painted color regions, stable silhouette, expressive full-body movement, controlled high-contrast lighting",
+    "negativePrompt": "copyrighted performer likeness, text, watermark, logo, flickering outlines, boiling facial features, identity changes, extra limbs, malformed hands, photorealistic background noise, chaotic camera, rapid finger motion",
+    "palette": [
+      "#201D24",
+      "#E9DCCB",
+      "#D54C45",
+      "#4C7E84",
+      "#D5A740"
+    ],
+    "cameraRules": [
+      "Use a fixed full-body reference shot",
+      "Keep the performer inside the frame",
+      "Favor side or front views for stable tracing",
+      "Avoid occlusion and fast camera movement"
+    ],
+    "fps": 24,
+    "motionRules": [
+      "Preserve broad lifelike body motion",
+      "Simplify facial animation to stable shapes",
+      "Use controlled line variation without per-frame identity drift",
+      "Avoid complex contact with props"
+    ],
+    "backgrounds": [
+      "Flat painted dance stage",
+      "Abstract graphic music backdrop",
+      "Simple urban wall plate",
+      "High-contrast studio void"
+    ],
+    "characterTypes": [
+      "Original adult dancer",
+      "Stylized live-action performer",
+      "Full-body sports archetype",
+      "Silhouette musician"
+    ]
+  },
+  {
+    "id": "cel-shaded-animation",
+    "name": "Cel-Shaded Animation",
+    "bestFor": "Games, stylized brand films, trailers",
+    "mainStrength": "2D cartoon look with 3D depth",
+    "route": "generative",
+    "promptPrefix": "Original cinematic cel-shaded 3D animation, bold ink contours, two-tone shadow cells, graphic halftone accents, dramatic golden-hour lighting, stable model geometry, dynamic but readable short-form composition",
+    "negativePrompt": "copyrighted comic character, franchise design, text, watermark, logo, realistic skin pores, flickering outlines, shifting shadows, off-model goggles, extra fingers, excessive speed lines, garbled background signs",
+    "palette": [
+      "#1E2530",
+      "#F2D3A0",
+      "#E6573F",
+      "#3F7791",
+      "#F0B93E"
+    ],
+    "cameraRules": [
+      "Mix wide hero shots with stable close-ups",
+      "Use one controlled dolly or low-angle push",
+      "Keep shadow cells consistent through movement",
+      "Avoid whip pans and extreme lens distortion"
+    ],
+    "fps": 24,
+    "motionRules": [
+      "Use stepped character accents with smooth camera traversal",
+      "Favor strong poses and clear anticipation",
+      "Keep halftone patterns anchored to surfaces",
+      "Avoid complicated hand-to-object interaction"
+    ],
+    "backgrounds": [
+      "Golden-hour industrial rooftop",
+      "Graphic futuristic garage",
+      "Sunset canyon road",
+      "Cel-shaded city overlook"
+    ],
+    "characterTypes": [
+      "Original goggle-wearing adventurer",
+      "Stylized game hero",
+      "Cel-shaded robot companion",
+      "Original comic-style racer"
+    ]
+  },
+  {
+    "id": "pixilation",
+    "name": "Pixilation",
+    "bestFor": "Music videos, title sequences, social shorts",
+    "mainStrength": "Surreal live-action stop motion",
+    "route": "generative",
+    "promptPrefix": "Original live-action pixilation, real adult performer posed in stop-motion increments, simple locked set, playful surreal body movement, consistent clothing, clean daylight, stable background plate",
+    "negativePrompt": "copyrighted performer, text, watermark, logo, face morphing, changing clothes, extra limbs, unsafe stunts, fast physics, camera shake, background people moving, flicker, complex prop interaction",
+    "palette": [
+      "#25282A",
+      "#ECE5D7",
+      "#D84C3E",
+      "#4C8C86",
+      "#E0B446"
+    ],
+    "cameraRules": [
+      "Use a locked wide or medium-wide shot",
+      "Keep the full performer visible",
+      "Clear the background of uncontrolled movement",
+      "Avoid pans, tilts, and zooms"
+    ],
+    "fps": 12,
+    "motionRules": [
+      "Use stepped 12 fps human poses",
+      "Create one simple slide or pose-change action",
+      "Preserve clothing and identity in every frame",
+      "Avoid jumps, falls, and dangerous physical gags"
+    ],
+    "backgrounds": [
+      "Empty daylight studio",
+      "Quiet painted wall sidewalk",
+      "Simple living-room stage",
+      "Flat rooftop with clear sky"
+    ],
+    "characterTypes": [
+      "Original adult performer",
+      "Live-action dancer",
+      "Everyday person in bold outfit",
+      "No character"
+    ]
+  },
+  {
+    "id": "sand-animation",
+    "name": "Sand Animation",
+    "bestFor": "Emotional brand films, cause campaigns, live shows",
+    "mainStrength": "Warm, hand-crafted storytelling",
+    "route": "generative",
+    "promptPrefix": "Backlit sand animation on a glass light table, warm monochrome grains, broad hand-shaped silhouettes, elegant negative space, tactile smudges, emotional original figures, stable top-down composition",
+    "negativePrompt": "text, letters, watermark, logo, colored CGI sand, photorealistic hands, detailed faces, fast pouring physics, flickering backlight, cluttered grain, abrupt scene transformations, extra fingers",
+    "palette": [
+      "#211C18",
+      "#D7B778",
+      "#F0D9A6",
+      "#8B6A45"
+    ],
+    "cameraRules": [
+      "Use a fixed top-down light-table view",
+      "Frame one large sand silhouette",
+      "Keep the light field evenly exposed",
+      "Avoid camera movement and hand close-ups"
+    ],
+    "fps": 12,
+    "motionRules": [
+      "Use stepped 12 fps shape transitions",
+      "Transform one broad silhouette per scene",
+      "Preserve grain texture without rapid particle simulation",
+      "Hold the final sand image before a soft wipe"
+    ],
+    "backgrounds": [
+      "Warm sand light table",
+      "Dark field with single sand figure",
+      "Abstract dune silhouette stage",
+      "Backlit memory tableau"
+    ],
+    "characterTypes": [
+      "Single human sand silhouette",
+      "Parent-and-child silhouette as one subject",
+      "Sand bird figure",
+      "Symbolic hand-shaped tree"
+    ]
+  },
+  {
+    "id": "pixel-art",
+    "name": "Pixel Art",
+    "bestFor": "Games, retro brands, social content",
+    "mainStrength": "Nostalgic, crafted pixel look",
+    "route": "programmatic",
+    "promptPrefix": "Crisp original pixel-art animation, limited indexed palette, nearest-neighbor scaling, readable sprite silhouettes, deliberate clusters, retro game composition, consistent sprite dimensions, vertical stage",
+    "negativePrompt": "anti-aliasing, smooth vector curves, pseudo-text, garbled HUD, watermark, logo, copyrighted game sprite, subpixel blur, noisy dithering, tiny unreadable sprite, excessive palette colors, perspective distortion",
+    "palette": [
+      "#1A1C2C",
+      "#F4F4F4",
+      "#EF7D57",
+      "#38B764",
+      "#FFCD75"
+    ],
+    "cameraRules": [
+      "Use integer-only camera positions",
+      "Keep sprites on the pixel grid",
+      "Favor side-on or top-down views",
+      "Scale by whole-number multiples only"
+    ],
+    "fps": 12,
+    "motionRules": [
+      "Use 2–4 frame sprite cycles",
+      "Move sprites in integer pixel increments",
+      "Hold strong key poses",
+      "Avoid rotation and subpixel interpolation"
+    ],
+    "backgrounds": [
+      "Pixel night market",
+      "Retro dungeon room",
+      "8-bit seaside platform",
+      "Pixel-space cockpit"
+    ],
+    "characterTypes": [
+      "Original 16-bit hero",
+      "Pixel robot mascot",
+      "Retro monster sprite",
+      "Tiny pixel explorer"
+    ]
+  },
+  {
+    "id": "mixed-media-animation",
+    "name": "Mixed Media Animation",
+    "bestFor": "Campaigns, brand films, short films",
+    "mainStrength": "Combines multiple visual techniques",
+    "route": "generative",
+    "promptPrefix": "Curated mixed-media animation combining original paper collage, clean paint strokes, photographic textures and restrained 2D motion, coherent limited palette, deliberate layering, stable hero subject, editorial vertical composition",
+    "negativePrompt": "copyrighted collage imagery, text artifacts, watermark, logo, visual technique overload, incoherent palette, face warping, flicker, chaotic layers, garbled magazine letters, extra limbs, rapid random transitions",
+    "palette": [
+      "#242329",
+      "#EFE5D5",
+      "#CF4D43",
+      "#4A8780",
+      "#DBAA3E"
+    ],
+    "cameraRules": [
+      "Use one dominant visual technique per scene",
+      "Keep the main subject in a stable layer",
+      "Favor straight-on editorial framing",
+      "Use collage wipes instead of complex camera moves"
+    ],
+    "fps": 24,
+    "motionRules": [
+      "Combine no more than two motion treatments per shot",
+      "Keep texture layers anchored",
+      "Use deliberate cuts and held mixed-media poses",
+      "Avoid continuous morphing between techniques"
+    ],
+    "backgrounds": [
+      "Paint-and-paper editorial set",
+      "Photographic wall with collage foreground",
+      "Tactile scrapbook city",
+      "Layered abstract campaign stage"
+    ],
+    "characterTypes": [
+      "Collage human protagonist",
+      "Painted figure with photo textures",
+      "Paper-and-fabric mascot",
+      "Original mixed-media creature"
+    ]
+  }
+]
