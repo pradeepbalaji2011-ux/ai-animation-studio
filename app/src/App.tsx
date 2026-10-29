@@ -199,7 +199,7 @@ export default function App() {
           <div className="topbar-right">
             <button className="search-trigger" onClick={() => setSearchOpen(true)}><Search size={15} /><span>Jump to a module</span><kbd>⌘ K</kbd></button>
             <button className="notification-btn" aria-label={`${openReminderCount} open reminders`} onClick={() => navigate('work')}><Bell size={17} />{openReminderCount > 0 && <span>{openReminderCount}</span>}</button>
-            <div className="creator-avatar" title="Local creator workspace">AR</div>
+            <div className="creator-avatar" title="Local creator workspace">PR</div>
           </div>
         </header>
         <main id="main-content">{page}</main>
