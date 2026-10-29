@@ -1,11 +1,11 @@
-import { ArrowRight, Bell, Check, CheckCircle2, Download, FileText, Flag, Clock3 } from 'lucide-react'
+import { ArrowRight, Bell, Check, CheckCircle2, Download, FileText, Flag, Clock3, Play } from 'lucide-react'
 import { Badge, Button, PanelHeader, SectionHeading } from '@/components/UI'
-import type { Project, Reminder, StylePreset } from '@/types/studio'
+import type { Project, Reminder, StylePreset, View } from '@/types/studio'
 
 const statuses: Project['status'][] = ['Idea', 'Script', 'Render', 'Review', 'Scheduled', 'Posted']
 export type KanbanItem = { id: string; title: string; style: string; status: Project['status'] }
 
-export default function WorkSummary({ project, style, items, reminders, onMove, onToggleReminder, onDownload, notify }: {
+export default function WorkSummary({ project, style, items, reminders, onMove, onToggleReminder, onDownload, onNavigate, notify }: {
   project: Project
   style: StylePreset
   items: KanbanItem[]
@@ -13,6 +13,7 @@ export default function WorkSummary({ project, style, items, reminders, onMove, 
   onMove: (id: string, status: Project['status']) => void
   onToggleReminder: (id: string) => void
   onDownload: () => void
+  onNavigate?: (view: View) => void
   notify: (message: string) => void
 }) {
   return (
@@ -21,7 +22,22 @@ export default function WorkSummary({ project, style, items, reminders, onMove, 
       <section className="work-kanban">
         {statuses.map((status) => <div className="kanban-column" key={status}><div className="kanban-head"><span>{status}</span><Badge>{items.filter((item) => item.status === status).length}</Badge></div>{items.filter((item) => item.status === status).map((item) => {
           const index = statuses.indexOf(item.status)
-          return <article className="kanban-card" key={item.id}><h3>{item.title}</h3><p>{item.style}</p>{index < statuses.length - 1 ? <Button size="sm" variant="ghost" onClick={() => onMove(item.id, statuses[index + 1])}>Move to {statuses[index + 1]} <ArrowRight size={12} /></Button> : <span className="posted-label"><Check size={12} />Published</span>}</article>
+          return <article className="kanban-card" key={item.id}>
+            <h3>{item.title}</h3>
+            <p>{item.style}</p>
+            {index < statuses.length - 1 ? (
+              <Button size="sm" variant="ghost" onClick={() => onMove(item.id, statuses[index + 1])}>Move to {statuses[index + 1]} <ArrowRight size={12} /></Button>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start', marginTop: '4px' }}>
+                <span className="posted-label"><Check size={12} />Published</span>
+                {onNavigate && (
+                  <Button size="sm" variant="secondary" onClick={() => onNavigate('analyzer')}>
+                    <Play size={12} fill="currentColor" /> Open in Analyzer
+                  </Button>
+                )}
+              </div>
+            )}
+          </article>
         })}</div>)}
       </section>
       <div className="work-lower">

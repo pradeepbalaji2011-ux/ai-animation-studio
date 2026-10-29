@@ -170,7 +170,7 @@ export default function App() {
       case 'scheduler': return <Scheduler schedule={schedule} projectTitle={project.title} onAdd={(post) => { setSchedule([...schedule, post]); notify(`Reminder saved for ${post.day} at ${post.time} IST`) }} onRemove={(id) => { setSchedule(schedule.filter((post) => post.id !== id)); notify('Posting reminder removed') }} notify={notify} />
       case 'analyzer': return <VideoAnalyzer onApply={(idea) => developIdea(idea, 'The Cloud Repair Shop — Retention Cut')} notify={notify} />
       case 'coach': return <AudienceCoach onUseIdea={developIdea} notify={notify} />
-      case 'work': return <WorkSummary project={project} style={currentStyle} items={items} reminders={reminders} onMove={(id, status) => { setItems(items.map((item) => item.id === id ? { ...item, status } : item)); notify(`Project moved to ${status}`) }} onToggleReminder={(id) => setReminders(reminders.map((item) => item.id === id ? { ...item, done: !item.done } : item))} onDownload={downloadSummary} notify={notify} />
+      case 'work': return <WorkSummary project={project} style={currentStyle} items={items} reminders={reminders} onMove={(id, status) => { setItems(items.map((item) => item.id === id ? { ...item, status } : item)); notify(`Project moved to ${status}`) }} onToggleReminder={(id) => setReminders(reminders.map((item) => item.id === id ? { ...item, done: !item.done } : item))} onDownload={downloadSummary} onNavigate={navigate} notify={notify} />
     }
   })()
 
