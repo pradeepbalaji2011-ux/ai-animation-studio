@@ -4,6 +4,7 @@ export type View =
   | 'script'
   | 'studio'
   | 'builder'
+  | 'aigenerate'
   | 'trends'
   | 'scheduler'
   | 'analyzer'

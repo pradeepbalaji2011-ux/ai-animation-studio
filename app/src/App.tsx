@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { BarChart3, Bell, BookOpenCheck, CalendarDays, Clapperboard, Command, Film, FolderKanban, LayoutDashboard, Menu, Palette, PlaySquare, Plus, Search, Sparkles, TrendingUp, UserRound, UsersRound, WandSparkles, X } from 'lucide-react'
+import { BarChart3, Bell, BookOpenCheck, Bot, CalendarDays, Clapperboard, Command, Film, FolderKanban, LayoutDashboard, Menu, Palette, PlaySquare, Plus, Search, Sparkles, TrendingUp, UserRound, UsersRound, WandSparkles, X } from 'lucide-react'
 import { Button, Field, Modal } from '@/components/UI'
 import { cx } from '@/lib/cx'
 import Dashboard from '@/pages/Dashboard'
@@ -7,6 +7,7 @@ import StyleLibrary from '@/pages/StyleLibrary'
 import ScriptStudio from '@/pages/ScriptStudio'
 import CharacterStudio from '@/pages/CharacterStudio'
 import VideoBuilder from '@/pages/VideoBuilder'
+import AIVideoGenerator from '@/pages/AIVideoGenerator'
 import TrendAnalyzer from '@/pages/TrendAnalyzer'
 import Scheduler from '@/pages/Scheduler'
 import VideoAnalyzer from '@/pages/VideoAnalyzer'
@@ -17,10 +18,11 @@ import { initialProject, initialReminders, initialScenes, initialSchedule, kanba
 import type { Project, Reminder, Scene, ScheduledPost, StylePreset, View } from '@/types/studio'
 
 const styles = styleData as StylePreset[]
-const validViews: View[] = ['dashboard', 'styles', 'script', 'studio', 'builder', 'trends', 'scheduler', 'analyzer', 'coach', 'work']
+const validViews: View[] = ['dashboard', 'styles', 'script', 'studio', 'builder', 'aigenerate', 'trends', 'scheduler', 'analyzer', 'coach', 'work']
 const navGroups: { label: string; items: { id: View; label: string; icon: typeof LayoutDashboard; shortcut?: string }[] }[] = [
   { label: 'OVERVIEW', items: [{ id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard }] },
   { label: 'CREATE', items: [
+    { id: 'aigenerate', label: 'AI Generate Video', icon: Bot },
     { id: 'styles', label: 'Style Library', icon: Palette },
     { id: 'script', label: 'Script Studio', icon: WandSparkles },
     { id: 'studio', label: 'Characters & Worlds', icon: UserRound },
@@ -35,7 +37,7 @@ const navGroups: { label: string; items: { id: View; label: string; icon: typeof
   { label: 'WORK', items: [{ id: 'work', label: 'Summary & Reminders', icon: FolderKanban }] },
 ]
 const viewNames: Record<View, string> = {
-  dashboard: 'Studio overview', styles: 'Style Library', script: 'Script Studio', studio: 'Character & Background Studio', builder: 'Video Builder', trends: 'Trend Analyzer', scheduler: 'Posting Scheduler', analyzer: 'Video Analyzer', coach: 'Audience Coach', work: 'Work Summary & Reminders',
+  dashboard: 'Studio overview', styles: 'Style Library', script: 'Script Studio', studio: 'Character & Background Studio', builder: 'Video Builder', aigenerate: 'AI Video Generator', trends: 'Trend Analyzer', scheduler: 'Posting Scheduler', analyzer: 'Video Analyzer', coach: 'Audience Coach', work: 'Work Summary & Reminders',
 }
 
 function useStoredState<T>(key: string, initialValue: T) {
@@ -166,6 +168,7 @@ export default function App() {
       case 'script': return <ScriptStudio project={project} styles={styles} scenes={scenes} onProjectChange={setProject} onGenerate={generateScenes} onSceneChange={(scene) => setScenes(scenes.map((item) => item.id === scene.id ? scene : item))} onNavigate={navigate} notify={notify} />
       case 'studio': return <CharacterStudio style={currentStyle} notify={notify} />
       case 'builder': return <VideoBuilder project={project} style={currentStyle} scenes={scenes.length ? scenes : initialScenes} renderProgress={renderProgress} rendering={rendering} onStartRender={() => { setRenderProgress(0); setRendering(true) }} onProjectChange={setProject} onDownload={downloadSummary} notify={notify} />
+      case 'aigenerate': return <AIVideoGenerator notify={notify} />
       case 'trends': return <TrendAnalyzer onUseIdea={developIdea} notify={notify} />
       case 'scheduler': return <Scheduler schedule={schedule} projectTitle={project.title} onAdd={(post) => { setSchedule([...schedule, post]); notify(`Reminder saved for ${post.day} at ${post.time} IST`) }} onRemove={(id) => { setSchedule(schedule.filter((post) => post.id !== id)); notify('Posting reminder removed') }} notify={notify} />
       case 'analyzer': return <VideoAnalyzer onApply={(idea) => developIdea(idea, 'The Cloud Repair Shop — Retention Cut')} notify={notify} />
