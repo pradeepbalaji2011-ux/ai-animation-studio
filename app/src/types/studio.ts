@@ -5,6 +5,7 @@ export type View =
   | 'studio'
   | 'builder'
   | 'aigenerate'
+  | 'character'
   | 'trends'
   | 'scheduler'
   | 'analyzer'
