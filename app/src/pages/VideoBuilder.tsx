@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Check, Download, Expand, FileCheck2, Pause, Play, RefreshCw, Scan, ShieldCheck, TriangleAlert, Volume2 } from 'lucide-react'
+import { Camera, Check, Download, Expand, FileCheck2, Film, Pause, Play, RefreshCw, Scan, ShieldCheck, TriangleAlert, Volume2 } from 'lucide-react'
 import { Badge, Button, PanelHeader, SectionHeading } from '@/components/UI'
 import { VideoFrame } from '@/components/StudioVisuals'
 import { pipelineStages } from '@/data/demo'
@@ -20,6 +20,7 @@ export default function VideoBuilder({ project, style, scenes, renderProgress, r
   const [safeZones, setSafeZones] = useState(true)
   const [playing, setPlaying] = useState(false)
   const [time, setTime] = useState(0)
+  const [exporting, setExporting] = useState(false)
   const selected = scenes.find((scene) => scene.id === selectedId) || scenes[0]
   const duration = scenes.reduce((total, scene) => total + scene.duration, 0)
   const stageIndex = Math.min(Math.floor((renderProgress / 100) * pipelineStages.length), pipelineStages.length - 1)
@@ -33,6 +34,103 @@ export default function VideoBuilder({ project, style, scenes, renderProgress, r
     return () => window.clearInterval(timer)
   }, [playing, duration])
 
+  const downloadFrameImage = () => {
+    const svgEl = document.querySelector('.video-frame svg')
+    if (!svgEl) { notify('No preview found to capture'); return }
+    const svgData = new XMLSerializer().serializeToString(svgEl)
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' })
+    const url = URL.createObjectURL(svgBlob)
+    const img = new Image()
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = 1080
+      canvas.height = 1920
+      const ctx = canvas.getContext('2d')
+      if (ctx) {
+        ctx.drawImage(img, 0, 0, 1080, 1920)
+        const a = document.createElement('a')
+        a.href = canvas.toDataURL('image/png')
+        a.download = `${project.title.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-${selected?.id || 'frame'}.png`
+        a.click()
+        notify('Keyframe exported (1080 × 1920 PNG)')
+      }
+      URL.revokeObjectURL(url)
+    }
+    img.src = url
+  }
+
+  const downloadVideoClip = async () => {
+    if (exporting) return
+    setExporting(true)
+    notify('Compiling 9:16 scene video clip…')
+    try {
+      const svgEl = document.querySelector('.video-frame svg')
+      if (!svgEl) throw new Error('Preview element not found')
+
+      const width = 720
+      const height = 1280
+      const canvas = document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      const ctx = canvas.getContext('2d')
+      if (!ctx) throw new Error('2D context unavailable')
+
+      const svgData = new XMLSerializer().serializeToString(svgEl)
+      const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' })
+      const blobURL = URL.createObjectURL(svgBlob)
+
+      const img = new Image()
+      await new Promise<void>((resolve, reject) => {
+        img.onload = () => resolve()
+        img.onerror = () => reject(new Error('SVG render failed'))
+        img.src = blobURL
+      })
+
+      const stream = canvas.captureStream(30)
+      const mimeType = (window as unknown as { MediaRecorder?: typeof MediaRecorder }).MediaRecorder && MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+        ? 'video/webm;codecs=vp9'
+        : 'video/webm'
+
+      const recorder = new MediaRecorder(stream, { mimeType })
+      const chunks: Blob[] = []
+
+      recorder.ondataavailable = (event) => {
+        if (event.data && event.data.size > 0) chunks.push(event.data)
+      }
+
+      recorder.onstop = () => {
+        const videoBlob = new Blob(chunks, { type: mimeType })
+        const downloadUrl = URL.createObjectURL(videoBlob)
+        const a = document.createElement('a')
+        a.href = downloadUrl
+        a.download = `${project.title.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-${selected?.id || 'scene'}.webm`
+        a.click()
+        URL.revokeObjectURL(blobURL)
+        setExporting(false)
+        notify('Video clip (.webm) downloaded successfully!')
+      }
+
+      recorder.start()
+      let frameCount = 0
+      const totalFrames = 90 // 3 seconds at 30 fps
+      const renderLoop = () => {
+        ctx.fillStyle = '#0f141a'
+        ctx.fillRect(0, 0, width, height)
+        ctx.drawImage(img, 0, 0, width, height)
+        frameCount++
+        if (frameCount < totalFrames) {
+          requestAnimationFrame(renderLoop)
+        } else {
+          recorder.stop()
+        }
+      }
+      renderLoop()
+    } catch {
+      downloadFrameImage()
+      setExporting(false)
+    }
+  }
+
   return (
     <div className="page builder-page">
       <SectionHeading eyebrow="RENDER ORCHESTRATION" title="Video Builder" description="A visible chain of custody from scene JSON to the vertical master. Preview controls are local; no provider job is hidden." action={<div className="builder-heading-actions"><Badge tone="green">9:16 PRIMARY</Badge><Button variant="primary" disabled={rendering} onClick={onStartRender}><RefreshCw size={15} className={rendering ? 'spin' : ''} />{rendering ? 'Simulating pipeline…' : 'Simulate local pipeline'}</Button></div>} />
@@ -43,6 +141,8 @@ export default function VideoBuilder({ project, style, scenes, renderProgress, r
             <div className="preview-tools">
               <label className="safe-toggle"><input type="checkbox" checked={safeZones} onChange={() => setSafeZones(!safeZones)} /><Scan size={14} />Safe zones</label>
               <select aria-label="Output aspect ratio" value={project.aspectRatio} onChange={(e) => onProjectChange({ ...project, aspectRatio: e.target.value as Project['aspectRatio'] })}><option value="9:16">9:16 · 1080 × 1920</option><option value="16:9">16:9 · 1920 × 1080</option></select>
+              <Button size="sm" variant="ghost" onClick={downloadFrameImage} title="Download high-resolution keyframe PNG"><Camera size={14} />Frame</Button>
+              <Button size="sm" variant="secondary" onClick={downloadVideoClip} disabled={exporting} title="Export video clip (.webm)"><Film size={14} />{exporting ? 'Exporting…' : 'Download video'}</Button>
             </div>
           </div>
           <div className={`preview-stage ${project.aspectRatio === '16:9' ? 'is-landscape' : ''}`}>
