@@ -951,18 +951,29 @@ const CharacterAnimator: React.FC<Props> = ({ notify }) => {
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
               <Sparkles size={20} />
             </div>
             <h1 className="text-3xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
-              Character Animator
+              Character Animator (Experimental Lab)
             </h1>
           </div>
-          <p className="text-gray-400 ml-13">
-            Anime-style character with walk cycles, gestures & lip sync motion → downloadable 9:16 WebM video
+          <p className="text-gray-400 ml-13 text-sm">
+            Procedural canvas rig demo with walk cycles, gestures & simulated lip sync.
           </p>
+        </div>
+
+        {/* Experimental Banner */}
+        <div className="mb-8 p-4 rounded-xl bg-red-950/40 border border-red-500/40 text-red-200 text-sm flex items-start gap-3">
+          <span className="text-xl">⚠️</span>
+          <div>
+            <strong className="block text-red-400 font-semibold mb-1">EXPERIMENTAL CANVAS RIG (OFFLINE LAB)</strong>
+            <p className="text-gray-300 text-xs leading-relaxed">
+              This screen is a client-side procedural 2D canvas rig demo. It is not connected to the 18-preset style registry, database schema, or the production Remotion/FFmpeg render pipeline.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

@@ -508,16 +508,26 @@ export default function AIVideoGenerator({ notify }: { notify: (m: string) => vo
   return (
     <div className="page" style={{ maxWidth: 900, margin: '0 auto' }}>
       <SectionHeading
-        eyebrow="AI DIRECTOR · ZERO-CLICK PRODUCTION"
-        title="AI Video Generator"
-        description="Enter a topic. The AI writes the script, applies a visual style, renders every frame, adds voiceover, and hands you a ready-to-post vertical video."
+        eyebrow="EXPERIMENTAL LAB · STANDALONE CANVAS DEMO"
+        title="AI Video Generator (Experimental)"
+        description="Standalone client-side demo. Note: Uses hardcoded palettes and browser TTS, not the 18-preset style registry or real services."
         action={
           <div style={{ display: 'flex', gap: 8 }}>
-            <Badge tone="red">9:16 SHORTS</Badge>
-            <Badge tone="green">VOICE INCLUDED</Badge>
+            <Badge tone="red">EXPERIMENTAL</Badge>
+            <Badge tone="amber">DEMO ONLY</Badge>
           </div>
         }
       />
+
+      <div style={{ background: 'rgba(239, 68, 68, 0.12)', border: '1px solid rgba(239, 68, 68, 0.4)', borderRadius: 8, padding: '12px 16px', marginBottom: 20, display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+        <TriangleAlert size={18} style={{ color: '#ef4444', flexShrink: 0, marginTop: 2 }} />
+        <div>
+          <strong style={{ color: '#ef4444', fontSize: 13, display: 'block', marginBottom: 2 }}>EXPERIMENTAL CANVAS PROTOTYPE (OFFLINE DEMO)</strong>
+          <p style={{ margin: 0, fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+            This screen is an unlinked client-side canvas demonstration using 5 hardcoded color palettes and browser-simulated synthesis. It does <strong>not</strong> use the 18-preset style registry, database schema, or production render pipeline.
+          </p>
+        </div>
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: 24, alignItems: 'start' }}>
         {/* ── Left: Form & Pipeline ─────────────────────────────────── */}

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { BarChart3, Bell, BookOpenCheck, Bot, CalendarDays, Clapperboard, Command, Film, FolderKanban, LayoutDashboard, Menu, Palette, PlaySquare, Plus, Search, Sparkles, TrendingUp, UserRound, UsersRound, WandSparkles, X } from 'lucide-react'
+import { BarChart3, Bell, BookOpenCheck, CalendarDays, Clapperboard, Command, Film, FolderKanban, LayoutDashboard, Menu, Palette, PlaySquare, Plus, Search, Sparkles, TrendingUp, UserRound, UsersRound, WandSparkles, X } from 'lucide-react'
 import { Button, Field, Modal } from '@/components/UI'
 import { cx } from '@/lib/cx'
 import Dashboard from '@/pages/Dashboard'
@@ -23,8 +23,6 @@ const validViews: View[] = ['dashboard', 'styles', 'script', 'studio', 'builder'
 const navGroups: { label: string; items: { id: View; label: string; icon: typeof LayoutDashboard; shortcut?: string }[] }[] = [
   { label: 'OVERVIEW', items: [{ id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard }] },
   { label: 'CREATE', items: [
-    { id: 'aigenerate', label: 'AI Generate Video', icon: Bot },
-    { id: 'character', label: 'Character Animator', icon: Sparkles },
     { id: 'styles', label: 'Style Library', icon: Palette },
     { id: 'script', label: 'Script Studio', icon: WandSparkles },
     { id: 'studio', label: 'Characters & Worlds', icon: UserRound },
@@ -39,7 +37,7 @@ const navGroups: { label: string; items: { id: View; label: string; icon: typeof
   { label: 'WORK', items: [{ id: 'work', label: 'Summary & Reminders', icon: FolderKanban }] },
 ]
 const viewNames: Record<View, string> = {
-  dashboard: 'Studio overview', styles: 'Style Library', script: 'Script Studio', studio: 'Character & Background Studio', builder: 'Video Builder', aigenerate: 'AI Video Generator', character: 'Character Animator', trends: 'Trend Analyzer', scheduler: 'Posting Scheduler', analyzer: 'Video Analyzer', coach: 'Audience Coach', work: 'Work Summary & Reminders',
+  dashboard: 'Studio overview', styles: 'Style Library', script: 'Script Studio', studio: 'Character & Background Studio', builder: 'Video Builder', aigenerate: 'AI Video Generator (Experimental Canvas Lab)', character: 'Character Animator (Experimental Canvas Lab)', trends: 'Trend Analyzer', scheduler: 'Posting Scheduler', analyzer: 'Video Analyzer', coach: 'Audience Coach', work: 'Work Summary & Reminders',
 }
 
 function useStoredState<T>(key: string, initialValue: T) {
