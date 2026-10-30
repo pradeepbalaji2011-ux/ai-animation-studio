@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
+    "test": "tsx src/schema.test.ts",
     "build": "tsc"
   },
   "dependencies": {
